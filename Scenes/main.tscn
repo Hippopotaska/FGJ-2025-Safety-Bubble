@@ -15,6 +15,11 @@ script = ExtResource("2_7immt")
 [node name="Timer" type="Timer" parent="enemy_director"]
 autostart = true
 
+[node name="enemy_group" type="Node2D" parent="enemy_director"]
+unique_name_in_owner = true
+
+[node name="HealthPack" parent="." instance=ExtResource("2_wx2ns")]
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
@@ -29,6 +34,7 @@ grow_vertical = 2
 script = ExtResource("3_qvao5")
 
 [node name="PlayerInfo" type="VBoxContainer" parent="HUD"]
+top_level = true
 custom_minimum_size = Vector2(450, 8)
 layout_mode = 1
 anchors_preset = 7
@@ -37,16 +43,39 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -225.0
-offset_top = -48.0
+offset_top = -89.295
 offset_right = 225.0
-offset_bottom = -28.0
+offset_bottom = -9.29498
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(225, 7)
 
-[node name="BubbleShieldHPBar" type="TextureProgressBar" parent="HUD/PlayerInfo"]
+[node name="Score" type="RichTextLabel" parent="HUD/PlayerInfo"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.75
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]100[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/PlayerInfo"]
+layout_mode = 2
+
+[node name="ShieldHp" type="RichTextLabel" parent="HUD/PlayerInfo/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.08
+theme_override_font_sizes/normal_font_size = 12
+text = "100"
+fit_content = true
+
+[node name="BubbleShieldHPBar" type="TextureProgressBar" parent="HUD/PlayerInfo/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 step = 0.1
 value = 50.0
 nine_patch_stretch = true
@@ -58,9 +87,22 @@ texture_progress = ExtResource("3_m1po4")
 tint_over = Color(0, 0.772549, 0.862745, 0)
 tint_progress = Color(0.239216, 0.490196, 0.643137, 1)
 
-[node name="XPBar" type="TextureProgressBar" parent="HUD/PlayerInfo"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/PlayerInfo"]
+layout_mode = 2
+
+[node name="Lvl" type="RichTextLabel" parent="HUD/PlayerInfo/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.08
+theme_override_font_sizes/normal_font_size = 12
+text = "100"
+fit_content = true
+
+[node name="XPBar" type="TextureProgressBar" parent="HUD/PlayerInfo/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 step = 0.1
 value = 50.0
 nine_patch_stretch = true
@@ -72,8 +114,119 @@ texture_progress = ExtResource("3_m1po4")
 tint_over = Color(1, 1, 1, 0)
 tint_progress = Color(0.419608, 0.635294, 0.286275, 1)
 
-[node name="HealthPack" parent="." instance=ExtResource("2_wx2ns")]
+[node name="Game Over Panel" type="Panel" parent="HUD"]
+unique_name_in_owner = true
+top_level = true
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="xpShard" type="Node2D" parent="."]
+[node name="GameOver" type="RichTextLabel" parent="HUD/Game Over Panel"]
+modulate = Color(1, 0.53, 0.53, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -118.8
+offset_right = 167.0
+offset_bottom = -41.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 56
+text = "GAME OVER"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Game Over Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -32.16
+offset_right = 225.0
+offset_bottom = 217.84
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Game Over Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/normal_font_size = 35
+text = "Time"
+
+[node name="RoundTime" type="RichTextLabel" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/normal_font_size = 35
+text = "00:00"
+text_direction = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HUD/Game Over Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/normal_font_size = 35
+text = "Score
+"
+
+[node name="RoundScore" type="RichTextLabel" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/normal_font_size = 35
+text = "1000"
+text_direction = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Game Over Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "Reset"
+
+[node name="Container" type="Container" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="QuitButton" type="Button" parent="HUD/Game Over Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "Quit"
+
+[node name="xp_group" type="Node2D" parent="."]
 
 [connection signal="timeout" from="enemy_director/Timer" to="enemy_director" method="_on_timer_timeout"]
+[connection signal="pressed" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/ResetButton" to="HUD" method="_on_reset_button_pressed"]
+[connection signal="button_down" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/QuitButton" to="HUD" method="_on_quit_button_button_down"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtxs7ht2fj0wb"]
+
+[ext_resource type="PackedScene" uid="uid://dcyr3og0pnayd" path="res://Scenes/bullet_base.tscn" id="1_6whc1"]
+
+[node name="Bullet" instance=ExtResource("1_6whc1")]
+
+[node name="Area2D" parent="." index="1"]
+collision_layer = 16
+collision_mask = 8

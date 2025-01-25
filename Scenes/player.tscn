@@ -4,12 +4,14 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_61765"]
 [ext_resource type="Texture2D" uid="uid://dr6plot85bwfv" path="res://Assets/Bubble.svg" id="3_itl37"]
 [ext_resource type="Script" path="res://Scripts/bubble_shield.gd" id="3_qt23u"]
-[ext_resource type="PackedScene" uid="uid://dcyr3og0pnayd" path="res://Scenes/bullet.tscn" id="5_im4ch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khswh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bwjti"]
 radius = 84.5931
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ximfs"]
+radius = 205.022
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_61765")
@@ -19,32 +21,43 @@ modulate = Color(0.482353, 1, 1, 1)
 position = Vector2(20, 0)
 texture = ExtResource("1_812pi")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 44
+[node name="PlayerCollider" type="Area2D" parent="."]
+collision_mask = 172
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider"]
 scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_khswh")
 
 [node name="Bubble" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_qt23u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bubble"]
 scale = Vector2(1.33, 1.33)
 texture = ExtResource("3_itl37")
 
-[node name="Area2D" type="Area2D" parent="Bubble"]
+[node name="BubbleCollider" type="Area2D" parent="Bubble"]
 collision_layer = 2
 collision_mask = 40
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble/BubbleCollider"]
 shape = SubResource("CircleShape2D_bwjti")
 
 [node name="Muzzle" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(105, 0)
 
-[node name="Bullet" parent="Muzzle" instance=ExtResource("5_im4ch")]
+[node name="shoot_cooldown" type="Timer" parent="."]
+unique_name_in_owner = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Bubble/Area2D" to="Bubble" method="_on_area_2d_area_entered"]
+[node name="XPCollider" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XPCollider"]
+shape = SubResource("CircleShape2D_ximfs")
+debug_color = Color(4.81308e-06, 0.645183, 0.265554, 0.42)
+
+[connection signal="area_entered" from="PlayerCollider" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Bubble/BubbleCollider" to="Bubble" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]

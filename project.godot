@@ -70,3 +70,5 @@ MoveRight={
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="Player_Projectile"
 2d_physics/layer_6="Enemy_Projectile"
+2d_physics/layer_7="xp_collector"
+2d_physics/layer_8="xp_drop"
