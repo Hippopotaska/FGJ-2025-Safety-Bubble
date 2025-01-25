@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://beulinw7gtm8t"]
+
+[ext_resource type="Script" path="res://Scripts/bubble_heal_item.gd" id="1_sfv8y"]
+[ext_resource type="Texture2D" uid="uid://cqglqw40avyqw" path="res://Assets/BubbleHealItem.svg" id="2_hwvv6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0c1qk"]
+radius = 32.0156
+
+[node name="HealthPack" type="Node2D"]
+position = Vector2(204, 203)
+script = ExtResource("1_sfv8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hwvv6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0c1qk")

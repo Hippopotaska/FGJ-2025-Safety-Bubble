@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://6v41a8y731j0"]
+
+[ext_resource type="Script" path="res://Scenes/Game_Manager.gd" id="1_brblj"]
+[ext_resource type="PackedScene" uid="uid://beulinw7gtm8t" path="res://Scenes/health_pack.tscn" id="2_wx2ns"]
+[ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="3_m1po4"]
+[ext_resource type="Script" path="res://Scripts/UI_Manager.gd" id="3_qvao5"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_brblj")
+
+[node name="HealthPack" parent="." instance=ExtResource("2_wx2ns")]
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("shieldBar", "xpBar")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_qvao5")
+shieldBar = NodePath("PlayerInfo/BubbleShieldHPBar")
+xpBar = NodePath("PlayerInfo/XPBar")
+
+[node name="PlayerInfo" type="VBoxContainer" parent="HUD"]
+custom_minimum_size = Vector2(450, 8)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -48.0
+offset_right = 225.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(225, 7)
+
+[node name="BubbleShieldHPBar" type="TextureProgressBar" parent="HUD/PlayerInfo"]
+layout_mode = 2
+step = 0.1
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_top = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_m1po4")
+texture_over = ExtResource("3_m1po4")
+texture_progress = ExtResource("3_m1po4")
+tint_over = Color(0, 0.772549, 0.862745, 0)
+tint_progress = Color(0.239216, 0.490196, 0.643137, 1)
+
+[node name="XPBar" type="TextureProgressBar" parent="HUD/PlayerInfo"]
+layout_mode = 2
+step = 0.1
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_top = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_m1po4")
+texture_over = ExtResource("3_m1po4")
+texture_progress = ExtResource("3_m1po4")
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.419608, 0.635294, 0.286275, 1)
