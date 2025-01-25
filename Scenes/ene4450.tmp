@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr2pqrxj2puug"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_melee.gd" id="1_3xjol"]
-[ext_resource type="Texture2D" uid="uid://ij81iyie85xv" path="res://icon.svg" id="1_n6b0r"]
+[ext_resource type="Script" path="res://Scripts/Enemies/basic_enemy.gd" id="1_fa4ra"]
+[ext_resource type="Texture2D" uid="uid://ij81iyie85xv" path="res://icon.svg" id="2_k0lru"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g632u"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hy7g"]
+radius = 10.3333
 
 [node name="enemy_melee" type="Node2D"]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_3xjol")
+script = ExtResource("1_fa4ra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.482353, 1, 1, 1)
-texture = ExtResource("1_n6b0r")
+texture = ExtResource("2_k0lru")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
@@ -20,6 +21,6 @@ collision_mask = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(6, 6)
-shape = SubResource("RectangleShape2D_g632u")
+shape = SubResource("CircleShape2D_1hy7g")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

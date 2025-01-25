@@ -2,9 +2,12 @@ extends Node2D
 
 class_name EnemyDirector
 
-var enemy_melee_scene = preload("res://Scenes/enemy_melee.tscn")
+var enemy_basic = preload("res://Scenes/Enemies/enemy_basic.tscn")
+var enemy_fast = preload("res://Scenes/Enemies/enemy_fast.tscn")
 
 static var do_spawn = true
+
+var difficulty = 0
 
 var min = Vector2.ZERO
 var max = Vector2.ZERO
@@ -23,9 +26,23 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	if (do_spawn):
-		var enemy_instance = enemy_melee_scene.instantiate()
-		%enemy_group.add_child(enemy_instance)
-		enemy_instance.global_position = get_spawn_position()
+		var spawn_value = randi_range(0, 100)
+		var enemy_instance
+		if (difficulty >= 2):
+			if (spawn_value < 20):
+				spawn_enemy(enemy_fast.instantiate())
+			else:
+				spawn_enemy(enemy_basic.instantiate())
+		else:
+			spawn_enemy(enemy_basic.instantiate())
+
+func spawn_enemy(enemy_instance: Node2D):
+	%enemy_group.add_child(enemy_instance)
+	enemy_instance.global_position = get_spawn_position()
+	
+func _on_difficulty_timer_timeout() -> void:
+	%spawn_timer.wait_time = %spawn_timer.wait_time - 0.05
+	difficulty += 1
 
 func get_spawn_position() -> Vector2:
 	var rect = get_viewport_rect()
@@ -45,8 +62,9 @@ func reset_enemies():
 	for entry in get_node("enemy_group").get_children():
 		destroy_enemy(entry)
 	do_spawn = true
+	difficulty = 0
 	
 
 static func destroy_enemy(enemy_to_remove: Node2D) -> void:
-	GameManager.gain_score(50)
+	GameManager.gain_score(enemy_to_remove.score_gain)
 	enemy_to_remove.queue_free()

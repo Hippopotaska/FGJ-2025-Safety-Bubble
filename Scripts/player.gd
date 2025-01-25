@@ -24,6 +24,10 @@ var shoot_cooldown = 1.5
 var can_shoot = true
 
 var do_movement = true
+var rect
+var center
+var min
+var max
 
 var bubble_shield
 
@@ -35,6 +39,11 @@ func _ready() -> void:
 	do_movement = true
 	SignalManager.game_reset.connect(reset_player)
 	SignalManager.level_up.emit(level)
+	
+	rect = get_viewport_rect()
+	center = rect.get_center()
+	min = Vector2(center.x - (rect.size.x * 0.5), center.y - (rect.size.y *0.5))
+	max = Vector2(center.x + (rect.size.x * 0.5), center.y + (rect.size.y *0.5))
 
 func _physics_process(delta: float) -> void:
 	if (do_movement):
@@ -57,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	
 		move_direction.normalized()
 		global_position += move_direction.normalized() * move_speed * delta
+		global_position = global_position.clamp(min, max)
 
 func gain_xp(xpAmount: int) -> void:
 	if (%Bubble.bubble_current_state == 4):

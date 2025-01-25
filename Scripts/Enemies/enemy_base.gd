@@ -1,7 +1,10 @@
 extends Node2D
 
+class_name EnemyBase
+
 var xp_shard = preload("res://Scenes/xp_shard.tscn")
 
+var score_gain = 50
 var do_movement = true
 var move_direction
 var move_speed = 80
@@ -9,7 +12,6 @@ var move_speed = 80
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (do_movement):
-		%Sprite2D.rotate(5 * delta)
 		move_direction = (GameManager.get_player_position() - global_position).normalized()
 		global_position += move_direction * move_speed * delta
 

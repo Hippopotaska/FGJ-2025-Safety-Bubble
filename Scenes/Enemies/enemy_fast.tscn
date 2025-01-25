@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://nu1m7pjsriet"]
+
+[ext_resource type="PackedScene" uid="uid://cr2pqrxj2puug" path="res://Scenes/Enemies/enemy_basic.tscn" id="1_jvvj2"]
+[ext_resource type="Script" path="res://Scripts/Enemies/fast_enemy.gd" id="2_rvfhm"]
+[ext_resource type="Texture2D" uid="uid://dk1hojyp8txq8" path="res://Assets/Dart.svg" id="2_xkgvg"]
+
+[node name="enemy_fast" instance=ExtResource("1_jvvj2")]
+script = ExtResource("2_rvfhm")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 0.504, 0.38, 1)
+position = Vector2(21.185, 0)
+rotation = 1.5708
+scale = Vector2(0.435, 0.435)
+texture = ExtResource("2_xkgvg")

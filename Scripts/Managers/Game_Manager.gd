@@ -31,6 +31,7 @@ func _ready() -> void:
 	score = 0
 	time_start = Time.get_ticks_msec()
 	SignalManager.update_score.emit(score)
+	SignalManager.game_reset.connect(clear_xp)
 
 func _process(delta: float) -> void:
 	if (game_state == STATE.PLAY):
@@ -60,3 +61,7 @@ static func reset_game() -> void:
 static func gain_score(add_score: float):
 	score += add_score
 	SignalManager.update_score.emit(score)
+	
+func clear_xp():
+	for entry in get_node("xp_group").get_children():
+		entry.queue_free()

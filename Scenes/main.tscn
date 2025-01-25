@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://6v41a8y731j0"]
+[gd_scene load_steps=5 format=3 uid="uid://6v41a8y731j0"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/Game_Manager.gd" id="1_kj5py"]
 [ext_resource type="Script" path="res://Scripts/Managers/enemy_director.gd" id="2_7immt"]
-[ext_resource type="PackedScene" uid="uid://beulinw7gtm8t" path="res://Scenes/health_pack.tscn" id="2_wx2ns"]
 [ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="3_m1po4"]
 [ext_resource type="Script" path="res://Scripts/Managers/UI_Manager.gd" id="3_qvao5"]
 
@@ -12,13 +11,16 @@ script = ExtResource("1_kj5py")
 [node name="enemy_director" type="Node2D" parent="."]
 script = ExtResource("2_7immt")
 
-[node name="Timer" type="Timer" parent="enemy_director"]
+[node name="spawn_timer" type="Timer" parent="enemy_director"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="difficulty_timer" type="Timer" parent="enemy_director"]
+wait_time = 15.0
 autostart = true
 
 [node name="enemy_group" type="Node2D" parent="enemy_director"]
 unique_name_in_owner = true
-
-[node name="HealthPack" parent="." instance=ExtResource("2_wx2ns")]
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -227,6 +229,7 @@ text = "Quit"
 
 [node name="xp_group" type="Node2D" parent="."]
 
-[connection signal="timeout" from="enemy_director/Timer" to="enemy_director" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_director/spawn_timer" to="enemy_director" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_director/difficulty_timer" to="enemy_director" method="_on_difficulty_timer_timeout"]
 [connection signal="pressed" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/ResetButton" to="HUD" method="_on_reset_button_pressed"]
 [connection signal="button_down" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/QuitButton" to="HUD" method="_on_quit_button_button_down"]
