@@ -7,7 +7,9 @@ static var game_state
 
 signal game_over
 
+var xp_shard = preload("res://Scenes/xp_shard.tscn")
 var player_scene = preload("res://Scenes/player.tscn")
+var level_up_text = preload("res://Scenes/LevelUpText.tscn")
 
 static var playerRef
 var HUDRef
@@ -40,6 +42,8 @@ func _ready() -> void:
 	SignalManager.update_score.emit(score)
 	SignalManager.game_reset.connect(clear_xp)
 	SignalManager.on_main_menu_entry.emit()
+	SignalManager.spawn_xp_shards.connect(spawn_xp)
+	SignalManager.level_up.connect(level_up)
 
 func _process(delta: float) -> void:
 	if (game_state == STATE.PLAY):
@@ -77,6 +81,20 @@ static func reset_game() -> void:
 static func gain_score(add_score: float):
 	score += add_score
 	SignalManager.update_score.emit(score)
+
+func level_up(newValue: int, playEffect: bool):
+	if (playEffect == true):
+		var lvlText = level_up_text.instantiate()
+		add_child(lvlText)
+		lvlText.global_position = get_player_position()
+		lvlText.global_position.y -= 25
+
+func spawn_xp(amount: int, position: Vector2):
+	for i in amount:
+		var xp = xp_shard.instantiate()
+		var randPos = Vector2(randf_range(-10,10), randf_range(-10,10))
+		xp.global_position = position + randPos
+		get_tree().root.get_node("main/xp_group").call_deferred("add_child",xp)
 	
 func clear_xp():
 	for entry in get_node("xp_group").get_children():

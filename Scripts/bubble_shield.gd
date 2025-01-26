@@ -70,4 +70,4 @@ func reset():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if (area.collision_layer == 8 or area.collision_layer == 32):
 		start_shrinking()
-		EnemyDirector.destroy_enemy(area.get_parent())
+		EnemyDirector.destroy_enemy(area.get_parent(), true)

@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dohttewyjtmis"]
+[gd_scene load_steps=4 format=3 uid="uid://huvlscb1kkhx"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/big_enemy.gd" id="1_368id"]
-[ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="2_xc326"]
+[ext_resource type="Script" path="res://Scripts/Enemies/big_enemy.gd" id="1_qnya1"]
+[ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="2_6pqbr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hy7g"]
-radius = 9.67241
+radius = 10.168
 
 [node name="enemy_basic" type="Node2D"]
-script = ExtResource("1_368id")
-score_gain = 150
-move_speed = 60
-xp_drops = 5
+scale = Vector2(2, 2)
+script = ExtResource("1_qnya1")
+hp = 6
+score_gain = 250
+xp_drops = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.763249, 0, 0.394119, 1)
+modulate = Color(0.8372, 0.368, 0.92, 1)
 scale = Vector2(15, 15)
-texture = ExtResource("2_xc326")
+texture = ExtResource("2_6pqbr")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

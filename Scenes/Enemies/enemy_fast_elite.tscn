@@ -1,21 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8txwm8wrxiep"]
+[gd_scene load_steps=3 format=3 uid="uid://48wruw12sf28"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/fast_enemy.gd" id="2_rvfhm"]
-[ext_resource type="Texture2D" uid="uid://dk1hojyp8txq8" path="res://Assets/Dart.svg" id="2_xkgvg"]
+[ext_resource type="Script" path="res://Scripts/Enemies/fast_enemy.gd" id="1_bybeb"]
+[ext_resource type="Texture2D" uid="uid://dk1hojyp8txq8" path="res://Assets/Dart.svg" id="2_3lfws"]
 
 [node name="enemy_basic" type="Node2D"]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("2_rvfhm")
-score_gain = 80
-move_speed = 160
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_bybeb")
+score_gain = 100
+move_speed = 240
+xp_drops = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.861998, 0.373911, 0.159031, 1)
+modulate = Color(0.935097, 0.766148, 0.0874026, 1)
 position = Vector2(15, 0)
 rotation = 1.5708
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_xkgvg")
+texture = ExtResource("2_3lfws")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-5.595, 0)

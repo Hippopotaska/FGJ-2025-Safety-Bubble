@@ -38,7 +38,6 @@ func _ready() -> void:
 	xpNeeded = xpBase
 	do_movement = true
 	SignalManager.game_reset.connect(reset_player)
-	SignalManager.level_up.emit(level)
 	
 	rect = get_viewport_rect()
 	center = rect.get_center()
@@ -87,7 +86,7 @@ func gain_xp(xpAmount: int) -> void:
 func level_up() -> void:
 	level += 1
 	shoot_cooldown *= 0.8
-	SignalManager.level_up.emit(level)
+	SignalManager.level_up.emit(level, true)
 	start_bubble_heal()
 	GameManager.gain_score(100 * level)
 
@@ -136,7 +135,7 @@ func reset_player():
 	reset_shield()
 	
 	SignalManager.player_xp_change.emit(((float)(curXP) / (float)(xpNeeded) * 100))
-	SignalManager.level_up.emit(level)
+	SignalManager.level_up.emit(level, false)
 
 func reset_gun_power():
 	gun_power = 1

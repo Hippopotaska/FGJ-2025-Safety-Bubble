@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbncaifdcrf5a"]
+
+[ext_resource type="Script" path="res://Scripts/level_up_text.gd" id="1_88565"]
+[ext_resource type="Texture2D" uid="uid://c4g17vo2m4p6r" path="res://Assets/Level_Up.svg" id="1_fpdu2"]
+
+[node name="Node2D" type="Node2D"]
+modulate = Color(0.33, 1, 0.352333, 1)
+z_index = 5
+script = ExtResource("1_88565")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="FadeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("1_fpdu2")
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]

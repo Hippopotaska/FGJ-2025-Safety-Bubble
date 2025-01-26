@@ -6,9 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/bubble_shield.gd" id="3_qt23u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khswh"]
+radius = 9.83333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bwjti"]
-radius = 84.5931
+radius = 83.006
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ximfs"]
 radius = 205.022
@@ -17,7 +18,6 @@ radius = 205.022
 script = ExtResource("1_61765")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.207, 0.9, 0.9, 1)
 z_index = 1
 position = Vector2(20, 0)
 texture = ExtResource("1_812pi")
@@ -34,8 +34,8 @@ unique_name_in_owner = true
 script = ExtResource("3_qt23u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bubble"]
-modulate = Color(0.72, 1, 0.972, 0.694118)
-z_index = -1
+modulate = Color(0.82, 1, 0.988, 0.903)
+z_index = 2
 scale = Vector2(1.33, 1.33)
 texture = ExtResource("3_itl37")
 
