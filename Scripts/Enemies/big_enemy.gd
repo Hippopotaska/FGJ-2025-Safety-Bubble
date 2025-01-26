@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if (area.collision_layer == 16 && is_dead == false):
 		area.get_parent().queue_free()
+		SignalManager.play_sound.emit("enemy_hit")
 		
 		hp -= 1
 		if (hp > 0):

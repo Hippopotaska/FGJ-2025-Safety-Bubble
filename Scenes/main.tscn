@@ -293,6 +293,34 @@ unique_name_in_owner = true
 volume_db = -12.0
 script = ExtResource("5_8hdow")
 
+[node name="Bubble_pop" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = 1.0
+
+[node name="Game_over" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
+[node name="level_up" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
+[node name="pickup_xp" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
+[node name="ui_select" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+unique_name_in_owner = true
+volume_db = -12.0
+
 [connection signal="timeout" from="enemy_director/spawn_timer" to="enemy_director" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_director/difficulty_timer" to="enemy_director" method="_on_difficulty_timer_timeout"]
 [connection signal="pressed" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/ResetButton" to="HUD" method="_on_reset_button_pressed"]

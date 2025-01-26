@@ -38,7 +38,7 @@ func update_shieldbar(newValue: float) -> void:
 func update_xpbar(newValue: float) -> void:
 	%XPBar.value = newValue
 
-func update_lvl_text(newValue: int):
+func update_lvl_text(newValue: int, show_effect: bool):
 	%Lvl.set_text("LVL " + str(newValue))
 
 func update_score(newValue: int):
