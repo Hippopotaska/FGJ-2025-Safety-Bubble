@@ -4,6 +4,7 @@ class_name EnemyDirector
 
 var enemy_basic = preload("res://Scenes/Enemies/enemy_basic.tscn")
 var enemy_fast = preload("res://Scenes/Enemies/enemy_fast.tscn")
+var enemy_big = preload("res://Scenes/Enemies/enemy_big.tscn")
 
 static var do_spawn = true
 
@@ -33,6 +34,18 @@ func _on_timer_timeout() -> void:
 				spawn_enemy(enemy_fast.instantiate())
 			else:
 				spawn_enemy(enemy_basic.instantiate())
+		elif (difficulty >= 4):
+			if (spawn_value < 16):
+				spawn_enemy(enemy_big.instantiate())
+			elif (spawn_value > 15 and spawn_value <= 50):
+				spawn_enemy(enemy_fast.instantiate())
+			else:
+				spawn_enemy(enemy_basic.instantiate())
+		elif (difficulty >= 8):
+			if (spawn_value < 75):
+				spawn_enemy(enemy_fast.instantiate())
+			else:
+				spawn_enemy(enemy_big.instantiate())
 		else:
 			spawn_enemy(enemy_basic.instantiate())
 
@@ -43,6 +56,7 @@ func spawn_enemy(enemy_instance: Node2D):
 func _on_difficulty_timer_timeout() -> void:
 	%spawn_timer.wait_time = %spawn_timer.wait_time - 0.05
 	difficulty += 1
+	GameManager.gain_score(difficulty * 100)
 
 func get_spawn_position() -> Vector2:
 	var rect = get_viewport_rect()

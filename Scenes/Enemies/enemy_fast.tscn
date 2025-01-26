@@ -1,15 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://nu1m7pjsriet"]
+[gd_scene load_steps=4 format=3 uid="uid://c8txwm8wrxiep"]
 
-[ext_resource type="PackedScene" uid="uid://cr2pqrxj2puug" path="res://Scenes/Enemies/enemy_basic.tscn" id="1_jvvj2"]
 [ext_resource type="Script" path="res://Scripts/Enemies/fast_enemy.gd" id="2_rvfhm"]
 [ext_resource type="Texture2D" uid="uid://dk1hojyp8txq8" path="res://Assets/Dart.svg" id="2_xkgvg"]
 
-[node name="enemy_fast" instance=ExtResource("1_jvvj2")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hy7g"]
+radius = 6.3421
+
+[node name="enemy_basic" type="Node2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("2_rvfhm")
 
-[node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 0.504, 0.38, 1)
-position = Vector2(21.185, 0)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.861998, 0.373911, 0.159031, 1)
+position = Vector2(15, 0)
 rotation = 1.5708
-scale = Vector2(0.435, 0.435)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_xkgvg")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-5.595, 0)
+collision_layer = 8
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(6, 6)
+shape = SubResource("CircleShape2D_1hy7g")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr2pqrxj2puug"]
+[gd_scene load_steps=4 format=3 uid="uid://dohttewyjtmis"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/basic_enemy.gd" id="1_fa4ra"]
-[ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="2_84nxw"]
+[ext_resource type="Script" path="res://Scripts/Enemies/big_enemy.gd" id="1_368id"]
+[ext_resource type="Texture2D" uid="uid://bdd1drn3arier" path="res://Assets/Pixel.svg" id="2_xc326"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hy7g"]
+radius = 9.67241
 
 [node name="enemy_basic" type="Node2D"]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_fa4ra")
+script = ExtResource("1_368id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 0.110667, 0.08, 1)
+modulate = Color(0.763249, 0, 0.394119, 1)
 scale = Vector2(15, 15)
-texture = ExtResource("2_84nxw")
+texture = ExtResource("2_xc326")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
