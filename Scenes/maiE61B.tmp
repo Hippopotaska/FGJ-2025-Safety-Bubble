@@ -290,7 +290,6 @@ text = "Quit"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-volume_db = -6.427
 script = ExtResource("5_8hdow")
 
 [connection signal="timeout" from="enemy_director/spawn_timer" to="enemy_director" method="_on_timer_timeout"]
@@ -299,4 +298,3 @@ script = ExtResource("5_8hdow")
 [connection signal="button_down" from="HUD/Game Over Panel/VBoxContainer/HBoxContainer/QuitButton" to="HUD" method="_on_quit_button_button_down"]
 [connection signal="pressed" from="HUD/Main Menu/VBoxContainer/startMainMenu" to="HUD" method="_on_start_main_menu_pressed"]
 [connection signal="pressed" from="HUD/Main Menu/VBoxContainer/quitMainMenu" to="HUD" method="_on_quit_main_menu_pressed"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

@@ -6,6 +6,7 @@ signal level_up(new_value, play_effect)
 signal update_score(new_value)
 signal update_round_info(score, time)
 
+signal play_sound(sound_name)
 signal spawn_xp_shards(amount, position)
 
 signal on_main_menu_entry()

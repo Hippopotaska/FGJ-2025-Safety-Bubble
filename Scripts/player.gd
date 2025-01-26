@@ -93,6 +93,7 @@ func level_up() -> void:
 func shoot() -> void:
 	# Source for shooting logic: https://www.youtube.com/watch?v=oKF_DvARvWc
 	for i in gun_power:
+		SignalManager.play_sound.emit("shoot")
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = %Muzzle.global_position
 		
@@ -122,6 +123,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		GameManager.end_game()
 		do_movement = false
 	elif (area.collision_layer == 128):
+		SignalManager.play_sound.emit("pickup_xp")
 		gain_xp(2)
 		area.get_parent().queue_free()
 

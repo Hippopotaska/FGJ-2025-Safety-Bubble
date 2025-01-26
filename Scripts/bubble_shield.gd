@@ -57,6 +57,7 @@ func start_growing() -> void:
 		bubble_current_state = bubble_state.GROWING
 func start_shrinking() -> void:
 	if (bubble_current_state != bubble_state.SHRINKING):
+		SignalManager.play_sound.emit("bubble_pop")
 		get_parent().reset_gun_power()
 		bubble_current_state = bubble_state.SHRINKING
 

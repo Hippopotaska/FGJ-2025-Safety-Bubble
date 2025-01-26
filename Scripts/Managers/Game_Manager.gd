@@ -65,6 +65,7 @@ static func start_game() -> void:
 	SignalManager.on_game_start.emit()
 	
 static func end_game() -> void:
+	SignalManager.play_sound.emit("game_over")
 	game_state = STATE.GAME_OVER
 	SignalManager.game_over.emit()
 	SignalManager.update_round_info.emit(score, int(time_now - time_start))
@@ -84,6 +85,7 @@ static func gain_score(add_score: float):
 
 func level_up(newValue: int, playEffect: bool):
 	if (playEffect == true):
+		SignalManager.play_sound.emit("level_up")
 		var lvlText = level_up_text.instantiate()
 		add_child(lvlText)
 		lvlText.global_position = get_player_position()

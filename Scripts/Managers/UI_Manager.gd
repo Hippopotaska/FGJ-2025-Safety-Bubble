@@ -61,15 +61,19 @@ func update_round_info(score: int, time: int):
 	%RoundScore.set_text(str(score))
 
 func _on_reset_button_pressed() -> void:
+	SignalManager.play_sound.emit("ui_select")
 	change_gameover_panel_state(false)
 	GameManager.reset_game()
 
 func _on_start_main_menu_pressed() -> void:
+	SignalManager.play_sound.emit("ui_select")
 	GameManager.start_game()
 
 
 func _on_quit_button_button_down() -> void:
+	SignalManager.play_sound.emit("ui_select")
 	get_tree().quit()
 
 func _on_quit_main_menu_pressed() -> void:
+	SignalManager.play_sound.emit("ui_select")
 	get_tree().quit()
