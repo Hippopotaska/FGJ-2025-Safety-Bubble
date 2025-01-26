@@ -38,6 +38,7 @@ script = ExtResource("3_qvao5")
 
 [node name="PlayerInfo" type="VBoxContainer" parent="HUD"]
 unique_name_in_owner = true
+visible = false
 top_level = true
 z_index = 9
 custom_minimum_size = Vector2(450, 8)
@@ -121,6 +122,7 @@ tint_progress = Color(0.419608, 0.635294, 0.286275, 1)
 
 [node name="Game Over Panel" type="Panel" parent="HUD"]
 unique_name_in_owner = true
+visible = false
 top_level = true
 light_mask = 2
 visibility_layer = 2
@@ -285,6 +287,40 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 text = "Quit"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HUD/Main Menu"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 520.0
+offset_right = 351.0
+offset_bottom = 720.0
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]- Controls -
+Movement | WASD or Arrow keys
+
+Shoot | M1 or Space bar
+
+Aim | Mouse	"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="HUD/Main Menu"]
+layout_mode = 0
+offset_left = 802.0
+offset_top = 519.0
+offset_right = 1152.0
+offset_bottom = 719.0
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]- Credits -
+Otto-Pekka Taskinen
+
+- Tools -
+Godot 4
+BFXR
+Audacity
+Figma"
+fit_content = true
 
 [node name="xp_group" type="Node2D" parent="."]
 
